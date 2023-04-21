@@ -31,7 +31,11 @@ function onShowBigImage(e) {
 
   let imagesSrc = e.target.dataset.source;
 
-  const modal = basicLightbox.create(`<img src="${imagesSrc}" width="800" height=""600>`);
+  const modal = basicLightbox.create(`<img src="${imagesSrc}" width="800" height=""600>`, {
+    onClose: () => {
+      window.removeEventListener("keydown", onPressEsc);
+    },
+  });
   modal.show();
 
   if (modal.visible()) {
